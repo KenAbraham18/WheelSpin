@@ -1,0 +1,17 @@
+text {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  pointer-events: none;
+}
+
+body {
+  background-color: #E1C699;
+}
+
+#chart {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  top: 0;
+  left: 0;
+}
