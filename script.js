@@ -132,7 +132,6 @@ function getRandomNumbers() {
     window.crypto.getRandomValues(array);
     console.log("works");
   } else {
-    //no support for crypto, get crappy random numbers
     for (var i = 0; i < 1000; i++) {
       array[i] = Math.floor(Math.random() * 100000) + 1;
     }
