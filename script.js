@@ -9,14 +9,20 @@ var padding = { top: 20, right: 40, bottom: 0, left: 0 },
   color = d3.scale.category20();
 
 var data = [
-  { "label": "1", "value": 2, "question": "What Number?" },
-  { "label": "2", "value": 3, "question": "What Number?" },
-  { "label": "3", "value": 4, "question": "What Number?" },
-  { "label": "4", "value": 5, "question": "What Number?" },
-  { "label": "5", "value": 6, "question": "What Number?" },
-  { "label": "6", "value": 7, "question": "What Number?" },
-
+  { "label": "Ken", "value": 1, "question": "NUMBER" },
+  { "label": "Emilio", "value": 2, "question": "NUMBER" },
+  { "label": "Nelson", "value": 3, "question": "NUMBER" },
+  { "label": "Matt", "value": 4, "question": "NUMBER" },
+  { "label": "Hector", "value": 5, "question": "NUMBER" },
+  { "label": "Charlie", "value": 6, "question": "NUMBER" },
+  { "label": "Christian", "value": 7, "question": "NUMBER" },
+  { "label": "Riley", "value": 8, "question": "NUMBER" },
+  { "label": "Aidan", "value": 9, "question": "NUMBER" },
+  { "label": "Maggie", "value": 10, "question": "NUMBER" },
+  { "label": "Giovanni", "value": 11, "question": "NUMBER" },
+  { "label": "Ms McDonald", "value": 12, "question": "NUMBER" },
 ];
+
 var svg = d3.select('#chart')
   .append("svg")
   .data([data])
@@ -29,9 +35,9 @@ var vis = container
   .append("g");
 
 var pie = d3.layout.pie().sort(null).value(function(d) { return 1; });
-// declare an arc generator function
+
 var arc = d3.svg.arc().outerRadius(r);
-// select paths, use arc generator to draw
+
 var arcs = vis.selectAll("g.slice")
   .data(pie)
   .enter()
@@ -39,8 +45,9 @@ var arcs = vis.selectAll("g.slice")
   .attr("class", "slice");
 
 arcs.append("path")
+  .attr("fill", function(d, i) { return color(i); })
   .attr("d", function(d) { return arc(d); });
-// add the text
+
 arcs.append("text").attr("transform", function(d) {
   d.innerRadius = 0;
   d.outerRadius = r;
@@ -55,7 +62,7 @@ container.on("click", spin);
 function spin(d) {
 
   container.on("click", null);
-  //all slices have been seen, all done
+
   console.log("OldPick: " + oldpick.length, "Data length: " + data.length);
   if (oldpick.length == data.length) {
     console.log("done");
@@ -92,7 +99,6 @@ function spin(d) {
 
       console.log(data[picked].value)
 
-
       container.on("click", spin);
     });
 }
@@ -108,7 +114,7 @@ container.append("circle")
   .attr("cy", 0)
   .attr("r", 60)
   .style({ "fill": "white", "cursor": "pointer" });
-//spin text
+
 container.append("text")
   .attr("x", 0)
   .attr("y", 15)
@@ -132,6 +138,7 @@ function getRandomNumbers() {
     window.crypto.getRandomValues(array);
     console.log("works");
   } else {
+
     for (var i = 0; i < 1000; i++) {
       array[i] = Math.floor(Math.random() * 100000) + 1;
     }
